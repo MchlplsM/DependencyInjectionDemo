@@ -1,5 +1,6 @@
 package com.example.DependencyInjectionDemo;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component //The compiler will check if there is an available customer in the container
@@ -8,6 +9,16 @@ public class Customers {
     private int custId;
     private String custName;
     private String courseName;
+    @Autowired //AutoWire annotation is used to enable a class recognize another class
+    private Technologies techDetail;
+
+    public Technologies getTechDetail() {
+        return techDetail;
+    }
+
+    public void setTechDetail(Technologies techDetail) {
+        this.techDetail = techDetail;
+    }
 
     public int getCustId() {
         return custId;
@@ -35,5 +46,6 @@ public class Customers {
 
     public void display(){
         System.out.println("Customers - Object Returned Successfully");
+        techDetail.tech(); //Customers class is dependent on Technologies class
     }
 }
